@@ -8,8 +8,6 @@ const HomePageLayout = (props) => {
       <Header />
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
           minHeight: "100vh",
           marginTop: 20,
           marginBottom: 50
