@@ -3,8 +3,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
-const logo =
+const logoWithName =
   "https://images.squarespace-cdn.com/content/v1/5f7366fe36612b5948a5c716/1601401749452-SB2QJS8L876RM2QRIIEN/Deck-Logo.png?format=1500w";
+
+const logo =
+  "https://images.squarespace-cdn.com/content/v1/5f7366fe36612b5948a5c716/1601399363536-AML4RQD30X58WXDYQ7QZ/Logo_only.png?format=1500w";
 
 const nvYellow = "#ec6101";
 
