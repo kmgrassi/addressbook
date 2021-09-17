@@ -1,6 +1,6 @@
 import { createStyles, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import SearchAppBar from "./AppBar";
+import SearchAppBar from "../appBar/AppBar";
 
 export function Header(props) {
   return (

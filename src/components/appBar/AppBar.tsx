@@ -10,7 +10,7 @@ import * as React from "react";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import theme from "../../theme";
 import { Filters } from "../filter/Filters";
-import { SearchBar } from "../search/SearchBar";
+import { SearchBar } from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
