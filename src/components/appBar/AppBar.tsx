@@ -61,7 +61,11 @@ export default function SearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={classes.root}>
+      <AppBar
+        position="static"
+        className={classes.root}
+        id="back-to-top-anchor"
+      >
         <Toolbar className={classes.root}>
           <Typography
             variant="h6"
