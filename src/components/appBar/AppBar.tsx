@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import theme from "../../theme";
-import { Filters } from "../filter/Filters";
+import { Filters } from "./Filters";
 import { SearchBar } from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,9 +51,7 @@ export default function SearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <div>
-        <Filters />
-      </div>
+      <Filters />
     </Menu>
   );
 
