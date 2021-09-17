@@ -7,7 +7,6 @@ import {
   Switch,
   Typography
 } from "@material-ui/core";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import React from "react";
 import { useAddressBookData } from "../../../context/AddressBookDataContext";
 import { alphabet } from "../../../utils/constants/alphabet";

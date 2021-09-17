@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { Button, Fab, makeStyles } from "@material-ui/core";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,6 +11,7 @@ import { useAddressBookData } from "../../context/AddressBookDataContext";
 import theme from "../../theme";
 import { Filters } from "./filters/Filters";
 import { SearchBar } from "./SearchBar";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +52,9 @@ export default function SearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Button onClick={handleMobileMenuClose} style={{ float: "right" }}>
+        <CloseIcon />
+      </Button>
       <Filters />
     </Menu>
   );
