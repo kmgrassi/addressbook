@@ -9,8 +9,8 @@ import {
 } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import React from "react";
-import { useAddressBookData } from "../../context/AddressBookDataContext";
-import { alphabet } from "../../utils/constants/alphabet";
+import { useAddressBookData } from "../../../context/AddressBookDataContext";
+import { alphabet } from "../../../utils/constants/alphabet";
 import { AlphabetButtons } from "./AlphabetButtons";
 
 const useStyles = makeStyles((theme) => ({

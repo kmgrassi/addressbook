@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import theme from "../../theme";
-import { Filters } from "./Filters";
+import { Filters } from "./filters/Filters";
 import { SearchBar } from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({
