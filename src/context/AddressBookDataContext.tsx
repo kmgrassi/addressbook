@@ -2,14 +2,13 @@ import * as React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { Contact } from "../types";
-import { aThroughM, nThroughZ } from "../utils/constants/alphabet";
+import { alphabet } from "../utils/constants/alphabet";
 import { applyFilters } from "../utils/helpers/filter.helpers";
 import {
   getLocalStorageListAndSort,
   sortAlphabetical
 } from "../utils/helpers/object.helpers";
 import { useGetRandomUserData } from "./useGetRandomData";
-const alphabet = aThroughM.concat(nThroughZ);
 
 export const AddressBookDataWrapper = (props) => {
   const initialState = getLocalStorageListAndSort();

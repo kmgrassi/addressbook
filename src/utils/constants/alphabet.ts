@@ -1,4 +1,4 @@
-export const aThroughM = [
+export const alphabet = [
   "A",
   "B",
   "C",
@@ -11,10 +11,7 @@ export const aThroughM = [
   "J",
   "K",
   "L",
-  "M"
-];
-
-export const nThroughZ = [
+  "M",
   "N",
   "O",
   "P",

@@ -10,9 +10,8 @@ import {
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import React from "react";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
-import { aThroughM, nThroughZ } from "../../utils/constants/alphabet";
-
-const alphabet = aThroughM.concat(nThroughZ);
+import { alphabet } from "../../utils/constants/alphabet";
+import { AlphabetButtons } from "./AlphabetButtons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +23,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export function Filters(props) {
+export function Filters() {
   const classes = useStyles();
   const {
     genderFilter,
     setGenderFilter,
-    alphabeticalFilter,
     setAlphaFilter,
     allLetters,
     contactList
@@ -92,32 +90,8 @@ export function Filters(props) {
             label="Toggle all letters"
           />
         </FormGroup>
+        <AlphabetButtons />
       </Grid>
-
-      <ToggleButtonGroup
-        value={alphabeticalFilter}
-        onChange={(e, values) => setAlphaFilter(values)}
-      >
-        {aThroughM.map((letter) => {
-          return (
-            <ToggleButton value={letter} className={classes.letterButtons}>
-              {letter}
-            </ToggleButton>
-          );
-        })}
-      </ToggleButtonGroup>
-      <ToggleButtonGroup
-        value={alphabeticalFilter}
-        onChange={(e, values) => setAlphaFilter(values)}
-      >
-        {nThroughZ.map((letter) => {
-          return (
-            <ToggleButton value={letter} className={classes.letterButtons}>
-              {letter}
-            </ToggleButton>
-          );
-        })}
-      </ToggleButtonGroup>
     </Grid>
   );
 }
