@@ -1,72 +1,80 @@
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Checkbox,
   FormControlLabel,
   FormGroup,
+  Grid,
+  makeStyles,
   Switch,
   Typography
 } from "@material-ui/core";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import { aThroughM, nThroughZ } from "../../utils/constants/alphabet";
 
 const alphabet = aThroughM.concat(nThroughZ);
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 600,
+    padding: 20
+  },
+  letterButtons: {
+    width: 35
+  }
+}));
+
 export function Filters(props) {
+  const classes = useStyles();
   const {
     genderFilter,
     setGenderFilter,
     alphabeticalFilter,
     setAlphaFilter,
-    allLetters
+    allLetters,
+    contactList
   } = useAddressBookData();
 
   return (
-    <div>
-      <Accordion defaultExpanded={false}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Filters</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={genderFilter.male}
-                  onChange={() => {
-                    setGenderFilter((prevState) => {
-                      return {
-                        male: !prevState.male,
-                        female: prevState.female
-                      };
-                    });
-                  }}
-                />
-              }
-              label="male"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={genderFilter.female}
-                  onChange={() => {
-                    setGenderFilter((prevState) => {
-                      return {
-                        male: prevState.male,
-                        female: !prevState.female
-                      };
-                    });
-                  }}
-                />
-              }
-              label="female"
-            />
-          </FormGroup>
-        </AccordionDetails>
+    <Grid container className={classes.root}>
+      <Typography>Count: {contactList.length}</Typography>
+      <Grid item xs={12}>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={genderFilter.male}
+                onChange={() => {
+                  setGenderFilter((prevState) => {
+                    return {
+                      male: !prevState.male,
+                      female: prevState.female
+                    };
+                  });
+                }}
+              />
+            }
+            label="male"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={genderFilter.female}
+                onChange={() => {
+                  setGenderFilter((prevState) => {
+                    return {
+                      male: prevState.male,
+                      female: !prevState.female
+                    };
+                  });
+                }}
+              />
+            }
+            label="female"
+          />
+        </FormGroup>
+      </Grid>
+      <Grid item xs={12}>
         <FormGroup>
           <FormControlLabel
             control={
@@ -84,23 +92,32 @@ export function Filters(props) {
             label="Toggle all letters"
           />
         </FormGroup>
-        <ToggleButtonGroup
-          value={alphabeticalFilter}
-          onChange={(e, values) => setAlphaFilter(values)}
-        >
-          {aThroughM.map((letter) => {
-            return <ToggleButton value={letter}>{letter}</ToggleButton>;
-          })}
-        </ToggleButtonGroup>
-        <ToggleButtonGroup
-          value={alphabeticalFilter}
-          onChange={(e, values) => setAlphaFilter(values)}
-        >
-          {nThroughZ.map((letter) => {
-            return <ToggleButton value={letter}>{letter}</ToggleButton>;
-          })}
-        </ToggleButtonGroup>
-      </Accordion>
-    </div>
+      </Grid>
+
+      <ToggleButtonGroup
+        value={alphabeticalFilter}
+        onChange={(e, values) => setAlphaFilter(values)}
+      >
+        {aThroughM.map((letter) => {
+          return (
+            <ToggleButton value={letter} className={classes.letterButtons}>
+              {letter}
+            </ToggleButton>
+          );
+        })}
+      </ToggleButtonGroup>
+      <ToggleButtonGroup
+        value={alphabeticalFilter}
+        onChange={(e, values) => setAlphaFilter(values)}
+      >
+        {nThroughZ.map((letter) => {
+          return (
+            <ToggleButton value={letter} className={classes.letterButtons}>
+              {letter}
+            </ToggleButton>
+          );
+        })}
+      </ToggleButtonGroup>
+    </Grid>
   );
 }

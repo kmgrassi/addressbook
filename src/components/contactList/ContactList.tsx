@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAddressBookData } from "../../context/AddressBookDataContext";
 import { Contact } from "../../types";
 import { formatToReadableName } from "../../utils/helpers/string.helpers";
 
@@ -24,12 +25,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export function ContactList({ list }) {
+export function ContactList() {
   const classes = useStyles();
+  const { contactList } = useAddressBookData();
   return (
     <div>
-      {list &&
-        list.map((contact: Contact, index) => {
+      {contactList &&
+        contactList.map((contact: Contact, index) => {
           return (
             <Link to={`/${index}`} className={classes.link}>
               {index === 0 && <Divider />}
@@ -38,7 +40,7 @@ export function ContactList({ list }) {
                 container
                 alignContent="space-between"
                 justifyContent="center"
-                spacing={4}
+                spacing={2}
                 className={classes.container}
               >
                 <Grid item xs={3}>
@@ -47,7 +49,7 @@ export function ContactList({ list }) {
                     src={contact.picture.thumbnail}
                   />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={5}>
                   <Typography variant="body1" className={classes.name}>
                     {formatToReadableName(contact)}
                   </Typography>
