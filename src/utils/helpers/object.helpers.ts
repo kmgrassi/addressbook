@@ -14,6 +14,9 @@ export const sortAlphabetical = (list) => {
 
 export const getLocalStorageListAndSort = () => {
   const contactList = localStorage.getItem("list");
+  if (!contactList) {
+    return null;
+  }
   const parsed = JSON.parse(contactList);
   const sorted = sortAlphabetical(parsed);
   return sorted;

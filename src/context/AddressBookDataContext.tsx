@@ -51,12 +51,15 @@ export const AddressBookDataWrapper = (props) => {
   useEffect(() => {
     const contactList = localStorage.getItem("list");
 
+    console.log("contact list", contactList);
+
     // If we have a list already set in local storage, set the contact list state
     if (contactList) {
       const parsed = JSON.parse(contactList);
       const sorted = sortAlphabetical(parsed);
       setContactList(sorted);
     } else {
+      console.log("data", data);
       // Else set the localStorage to the data results
       if (data && data.results) {
         localStorage.setItem("list", JSON.stringify(data.results));
