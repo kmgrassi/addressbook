@@ -10,14 +10,14 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAddressBookData } from "../../context/AddressBookDataContext";
+
 import HomePageLayout from "../../components/layout/HomeLayout";
+import { useAddressBookData } from "../../context/AddressBookDataContext";
 import { Contact } from "../../types";
 import {
   formatToReadableAddress,
   formatToReadableName
 } from "../../utils/helpers/string.helpers";
-import { StyledSpinner } from "../../components/loading/StyledSpinner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +61,7 @@ export function ContactDetails(props) {
     if (contactList) {
       setContact(contactList[index]);
     }
-  }, [contactList]);
+  }, [contactList, index]);
 
   return (
     <HomePageLayout>

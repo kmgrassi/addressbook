@@ -17,7 +17,7 @@ function App() {
         <AddressBookDataWrapper>
           <Router>
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
               <Route path="/:index">

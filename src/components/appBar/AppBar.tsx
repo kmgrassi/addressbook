@@ -1,4 +1,4 @@
-import { Button, Fab, makeStyles } from "@material-ui/core";
+import { Button, ButtonGroup, Fab, makeStyles } from "@material-ui/core";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,20 +12,41 @@ import theme from "../../theme";
 import { Filters } from "./filters/Filters";
 import { SearchBar } from "./SearchBar";
 import CloseIcon from "@material-ui/icons/Close";
+import { Link, useParams } from "react-router-dom";
+import { Fragment } from "react";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#FFFFFF"
+  },
+  link: {
+    textDecoration: "none",
+    color: "inherit"
   }
 }));
 
 export default function SearchAppBar() {
   const classes = useStyles();
+  const history = useHistory();
+
+  let { index } = useParams();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
   const { contactList } = useAddressBookData();
+
+  const handleNavNext = () => {
+    history.push(`/${Number(index) + 1}`);
+  };
+
+  const handleNavLast = () => {
+    history.push(`/${Number(index) - 1}`);
+  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -67,36 +88,73 @@ export default function SearchAppBar() {
         id="back-to-top-anchor"
       >
         <Toolbar className={classes.root}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              color: theme.palette.primary.main
-            }}
-          >
-            Address book
-          </Typography>
-          <SearchBar />
-          <Box sx={{ flexGrow: 1 }}></Box>
-          <Typography
-            sx={{
-              display: { xs: "none", sm: "block" },
-              color: theme.palette.primary.main
-            }}
-          >
-            Count {contactList.length}
-          </Typography>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-controls={menuId}
-              onClick={handleMobileMenuOpen}
+          <Link to={`/`} className={classes.link}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                display: { sm: "block" },
+                color: theme.palette.primary.main
+              }}
             >
-              <MoreIcon />
-            </IconButton>
-          </Box>
+              Address book
+            </Typography>
+          </Link>
+
+          {/* Search and filters will not render on details page */}
+          {!index && (
+            <Fragment>
+              <SearchBar />
+              <Box sx={{ flexGrow: 1 }}></Box>
+              <Typography
+                sx={{
+                  display: { xs: "none", sm: "block" },
+                  color: theme.palette.primary.main
+                }}
+              >
+                Count {contactList.length}
+              </Typography>
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-controls={menuId}
+                  onClick={handleMobileMenuOpen}
+                >
+                  <MoreIcon />
+                </IconButton>
+              </Box>
+            </Fragment>
+          )}
+
+          {index && (
+            <Fragment>
+              <Box sx={{ flexGrow: 1 }}></Box>
+              <ButtonGroup
+                variant="contained"
+                aria-label="outlined primary button group"
+              >
+                <Button
+                  color="primary"
+                  size="small"
+                  style={{ width: 80 }}
+                  onClick={handleNavLast}
+                  disabled={index === "0"}
+                >
+                  <KeyboardArrowLeftIcon /> Last
+                </Button>
+                <Button
+                  color="primary"
+                  size="small"
+                  style={{ width: 80 }}
+                  onClick={handleNavNext}
+                  disabled={index === "499"}
+                >
+                  Next <NavigateNextIcon />
+                </Button>
+              </ButtonGroup>
+            </Fragment>
+          )}
         </Toolbar>
       </AppBar>
       {renderMenu}
