@@ -112,7 +112,7 @@ export default function SearchAppBar() {
                   color: theme.palette.primary.main
                 }}
               >
-                Count {contactList.length}
+                Count {contactList ? contactList.length : "0"}
               </Typography>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
                 <IconButton
