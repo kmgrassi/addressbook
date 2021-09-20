@@ -7,6 +7,7 @@ const HomePageLayout = (props) => {
     <div>
       <Header />
       <div
+        id="content"
         style={{
           minHeight: "100vh",
           marginTop: 20,

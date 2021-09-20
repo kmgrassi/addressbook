@@ -24,7 +24,7 @@ export const AddressBookDataWrapper = (props) => {
   const [alphabeticalFilter, setAlphaFilter] = useState(alphabet);
 
   // This is called with each render, which means that the api call will be made even if we have the data in localStorage.
-  const [isLoading, error, data] = useGetRandomUserData();
+  const { data, error, isLoading } = useGetRandomUserData();
 
   useEffect(() => {
     // This set the "all letters" toggle to the correct state

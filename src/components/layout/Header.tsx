@@ -4,7 +4,7 @@ import SearchAppBar from "../appBar/AppBar";
 
 export function Header(props) {
   return (
-    <div>
+    <div id="header">
       <SearchAppBar />
     </div>
   );
