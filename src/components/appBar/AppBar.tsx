@@ -1,5 +1,8 @@
-import { Button, ButtonGroup, Fab, makeStyles } from "@material-ui/core";
+import { Button, ButtonGroup, makeStyles } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -7,16 +10,12 @@ import Menu from "@mui/material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { Fragment } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import theme from "../../theme";
 import { Filters } from "./filters/Filters";
 import { SearchBar } from "./SearchBar";
-import CloseIcon from "@material-ui/icons/Close";
-import { Link, useParams } from "react-router-dom";
-import { Fragment } from "react";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import { Contact } from "../../types";
 import { formatToReadableName } from "../../utils/helpers/string.helpers";
+import { StyledSpinner } from "../loading/StyledSpinner";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 
 export function ContactList() {
   const classes = useStyles();
-  const { contactList } = useAddressBookData();
+  const { contactList, isLoading } = useAddressBookData();
   return (
     <div>
+      {isLoading && <StyledSpinner />}
       {contactList &&
         contactList.map((contact: Contact, index) => {
           return (

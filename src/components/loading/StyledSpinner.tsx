@@ -3,30 +3,22 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
-const logoWithName =
-  "https://images.squarespace-cdn.com/content/v1/5f7366fe36612b5948a5c716/1601401749452-SB2QJS8L876RM2QRIIEN/Deck-Logo.png?format=1500w";
-
-const logo =
+const nvlogo =
   "https://images.squarespace-cdn.com/content/v1/5f7366fe36612b5948a5c716/1601399363536-AML4RQD30X58WXDYQ7QZ/Logo_only.png?format=1500w";
-
-const nvYellow = "#ec6101";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
-      paddingTop: 100,
+      margin: "auto",
+      paddingTop: 50,
       height: 200,
       width: 200
     },
     spinner: {
-      backgroundImage: `url(${logo})`,
+      backgroundImage: `url(${nvlogo})`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "140px 110px"
-    },
-    center: {
-      backgroundColor: theme.palette.grey[400]
     }
   })
 );
@@ -35,17 +27,15 @@ export function StyledSpinner() {
   const classes = useStyles();
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center">
-      <div className={classes.root}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          className={classes.spinner}
-        >
-          <CircularProgress size={200} thickness={5} color="secondary" />
-        </Box>
-      </div>
-    </Box>
+    <div className={classes.root}>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        className={classes.spinner}
+      >
+        <CircularProgress size={200} thickness={3} color="primary" />
+      </Box>
+    </div>
   );
 }

@@ -3,15 +3,14 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  CircularProgress,
   Grid,
   makeStyles,
   Typography
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import HomePageLayout from "../../components/layout/HomeLayout";
+import { StyledSpinner } from "../../components/loading/StyledSpinner";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
 import { Contact } from "../../types";
 import {
@@ -65,9 +64,7 @@ export function ContactDetails(props) {
 
   return (
     <HomePageLayout>
-      {isLoading && (
-        <CircularProgress size={200} thickness={5} color="secondary" />
-      )}
+      {isLoading && <StyledSpinner />}
       {!isLoading && contactList && contact && (
         <Card className={classes.root}>
           <CardActionArea>
