@@ -1,0 +1,14 @@
+{
+  "name": "Address book example",
+  "description": "Front end address booking using the randomuser.me api",
+  "repository": "https://github.com/kmgrassi/addressbook",
+  "keywords": ["node", "react", "typeScript"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/mars/create-react-app-buildpack.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
