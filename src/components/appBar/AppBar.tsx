@@ -114,7 +114,7 @@ export default function SearchAppBar() {
               >
                 Count {contactList ? contactList.length : "0"}
               </Typography>
-              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <Box>
                 <IconButton
                   size="large"
                   aria-controls={menuId}
