@@ -6,6 +6,8 @@ This is a demo address book app that leverages the https://randomuser.me/ API.
 
 A working version of the app can be found here: https://nv-address-book.herokuapp.com/
 
+https://heroku.com/deploy?template=https://nv-address-book.herokuapp.com
+
 ## Getting started
 
 - Clone repo
@@ -13,7 +15,6 @@ A working version of the app can be found here: https://nv-address-book.herokuap
 - Run `npm install`
 - Run `npm start`
 
-Deploy with Heroku:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Project summary
