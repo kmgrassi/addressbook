@@ -7,7 +7,7 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Contact } from "../../types";
 import { formatToReadableName } from "../../utils/helpers/string.helpers";
@@ -24,15 +24,32 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     textAlign: "center"
-  },
-  avatar: {
-    width: "80%",
-    height: "80%"
   }
 }));
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
 export function ContactList({ isLoading, contactList }) {
   const classes = useStyles();
+
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div>
@@ -49,12 +66,15 @@ export function ContactList({ isLoading, contactList }) {
                 justifyContent="center"
                 spacing={2}
                 className={classes.container}
+                style={{
+                  paddingLeft: windowDimensions.width < 500 ? "2%" : "20%",
+                  paddingRight: windowDimensions.width < 500 ? "2%" : "20%"
+                }}
               >
                 <Grid item xs={2}>
                   <Avatar
                     alt={`${contact.name.first} + ${contact.name.last}`}
                     src={contact.picture.thumbnail}
-                    className={classes.avatar}
                   />
                 </Grid>
                 <Grid item xs={6}>
