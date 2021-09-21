@@ -25,9 +25,9 @@ The random user api generates a list of contacts based on several params and out
 
 I chose to select 500 random contacts to seed the app. I also chose to request users with US nationality.
 
-This is a React app that uses create-react-app. I created a custom hook that leverages `react-query` to fetch the data.
+This is a React app that uses create-react-app. I created a custom hook that uses `react-query` to fetch the data.
 
-There are two main pages: `home` and `details`. The home page renders a list of the 500 users with their name and an avatar.
+There are two main pages: `home` and `details`. The home page renders a list of the 500 users with their name and avatar.
 
 The home page also has a search bar, user count and a filter modal. These are discussed below.
 
@@ -51,7 +51,7 @@ These took the longest to implement.
 
 The `AddressBookDataWrapper` is a context wrapper that handles the filtering.
 
-In this context wrapper I use reacts `useEffect()` to listen for changes to the two filters: gender and alphabetical. Anytime a change to the filters are made the `applyFilters()` method is applied based on the initial state data.
+This context wrapper uses `useEffect()` to listen for changes to the two filters: gender and alphabetical. Anytime a filter is changed the `applyFilters()` method is applied to the initial state data.
 
 There could be several other ways to implement this. I tried initially to filter based on the previous state. However, this doesn't work when you try to "add back" inclusion criteria.
 
@@ -59,7 +59,7 @@ In the end, instead of trying to keep track of the before/after filters I just a
 
 ### Details page
 
-The details page include a picture of the contact along with their name and details.
+The details page includes a picture of the contact along with their name and details.
 
 I noticed the pictures are low quality. If this was the quality of the pictures in a prod app, I'd likely just use the smaller avatars.
 
