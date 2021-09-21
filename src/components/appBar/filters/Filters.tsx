@@ -34,7 +34,7 @@ export function Filters() {
 
   return (
     <Grid container className={classes.root}>
-      <Typography>Count: {contactList.length}</Typography>
+      <Typography>Count: {contactList ? contactList.length : "0"}</Typography>
       <Grid item xs={12}>
         <FormGroup>
           <FormControlLabel
