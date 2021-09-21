@@ -31,7 +31,7 @@ export function ContactList() {
   const { contactList, isLoading } = useAddressBookData();
   return (
     <div>
-      {isLoading && <StyledSpinner />}
+      {isLoading && !contactList && <StyledSpinner />}
       {contactList &&
         contactList.map((contact: Contact, index) => {
           return (
