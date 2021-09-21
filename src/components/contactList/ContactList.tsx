@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
+import { useInitialData } from "../../context/InitialDataContext";
 import { Contact } from "../../types";
 import { formatToReadableName } from "../../utils/helpers/string.helpers";
 import { StyledSpinner } from "../loading/StyledSpinner";
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 export function ContactList() {
   const classes = useStyles();
-  const { contactList, isLoading } = useAddressBookData();
+  const { isLoading } = useInitialData();
+  const { contactList } = useAddressBookData();
   return (
     <div>
       {isLoading && !contactList && <StyledSpinner />}

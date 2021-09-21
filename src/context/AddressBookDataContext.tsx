@@ -1,19 +1,12 @@
 import * as React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-
 import { Contact } from "../types";
 import { alphabet } from "../utils/constants/alphabet";
 import { applyFilters } from "../utils/helpers/filter.helpers";
-import {
-  getLocalStorageListAndSort,
-  sortAlphabetical
-} from "../utils/helpers/object.helpers";
-import { useGetRandomUserData } from "./useGetRandomData";
 
+// Context wrapper to handle filtering
 export const AddressBookDataWrapper = (props) => {
-  const initialState = getLocalStorageListAndSort();
-
-  const [contactList, setContactList] = useState<Contact[]>(initialState);
+  const [contactList, setContactList] = useState<Contact[]>(props.initialList);
   const [genderFilter, setGenderFilter] = useState({
     male: true,
     female: true
@@ -23,8 +16,11 @@ export const AddressBookDataWrapper = (props) => {
 
   const [alphabeticalFilter, setAlphaFilter] = useState(alphabet);
 
-  // This is called with each render, which means that the api call will be made even if we have the data in localStorage.
-  const { data, error, isLoading } = useGetRandomUserData();
+  useEffect(() => {
+    if (!contactList || contactList.length === 0) {
+      setContactList(props.initialList);
+    }
+  }, [props.initialList]);
 
   useEffect(() => {
     // This set the "all letters" toggle to the correct state
@@ -40,35 +36,15 @@ export const AddressBookDataWrapper = (props) => {
       genderFilter.female &&
       alphabeticalFilter.length === 26
     ) {
-      setContactList(initialState);
+      setContactList(props.initialList);
     } else {
       setContactList(
-        applyFilters(initialState, genderFilter, alphabeticalFilter)
+        applyFilters(props.initialList, genderFilter, alphabeticalFilter)
       );
     }
   }, [genderFilter, alphabeticalFilter]);
 
-  useEffect(() => {
-    const contactList = localStorage.getItem("list");
-
-    // If we have a list already set in local storage, set the contact list state
-    if (contactList) {
-      const parsed = JSON.parse(contactList);
-      const sorted = sortAlphabetical(parsed);
-      setContactList(sorted);
-    } else {
-      console.log("data", data);
-      // Else set the localStorage to the data results
-      if (data && data.results) {
-        localStorage.setItem("list", JSON.stringify(data.results));
-        setContactList(data.results);
-      }
-    }
-  }, [data]);
-
   const value = {
-    isLoading,
-    error,
     contactList,
     genderFilter,
     setGenderFilter,
@@ -84,8 +60,6 @@ export const AddressBookDataWrapper = (props) => {
 };
 
 export const AddressBookDataContext = createContext({
-  isLoading: false,
-  error: {} as unknown | boolean,
   contactList: [] as Contact[],
   genderFilter: { male: true, female: true },
   setGenderFilter: (filter) => {},
