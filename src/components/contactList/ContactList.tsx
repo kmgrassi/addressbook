@@ -1,7 +1,9 @@
 import {
   Avatar,
+  Box,
   Divider,
   Grid,
+  Hidden,
   makeStyles,
   Typography
 } from "@material-ui/core";
@@ -22,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     textAlign: "center"
+  },
+  avatar: {
+    width: "80%",
+    height: "80%"
   }
 }));
 
@@ -44,13 +50,14 @@ export function ContactList({ isLoading, contactList }) {
                 spacing={2}
                 className={classes.container}
               >
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Avatar
                     alt={`${contact.name.first} + ${contact.name.last}`}
                     src={contact.picture.thumbnail}
+                    className={classes.avatar}
                   />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={6}>
                   <Typography variant="body1" className={classes.name}>
                     {formatToReadableName(contact)}
                   </Typography>
