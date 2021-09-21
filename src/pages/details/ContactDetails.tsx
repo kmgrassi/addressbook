@@ -11,8 +11,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HomePageLayout from "../../components/layout/HomeLayout";
 import { StyledSpinner } from "../../components/loading/StyledSpinner";
-import { useAddressBookData } from "../../context/AddressBookDataContext";
-import { useInitialData } from "../../context/InitialDataContext";
 import { Contact } from "../../types";
 import {
   formatToReadableAddress,
@@ -49,14 +47,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export function ContactDetails(props) {
+export function ContactDetails({ contactList, isLoading }) {
   const classes = useStyles();
   const [contact, setContact] = useState<Contact>();
 
   let { index } = useParams();
-
-  const { isLoading } = useInitialData();
-  const { contactList } = useAddressBookData();
 
   useEffect(() => {
     if (contactList) {

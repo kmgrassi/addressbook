@@ -7,7 +7,7 @@ import ContactDetails from "./pages/details/ContactDetails";
 import Home from "./pages/home/Home";
 import theme from "./theme";
 
-export function _App({ initialList }) {
+export function _App({ initialList, isLoading }) {
   return (
     <ThemeProvider theme={theme}>
       <AddressBookDataWrapper initialList={initialList}>
@@ -17,7 +17,7 @@ export function _App({ initialList }) {
               <Home />
             </Route>
             <Route path="/:index">
-              <ContactDetails />
+              <ContactDetails contactList={initialList} isLoading={isLoading} />
             </Route>
           </Switch>
         </Router>
@@ -27,8 +27,8 @@ export function _App({ initialList }) {
 }
 
 function App() {
-  const { initialList } = useInitialData();
-  return <_App initialList={initialList} />;
+  const { initialList, isLoading } = useInitialData();
+  return <_App initialList={initialList} isLoading={isLoading} />;
 }
 
 export default App;
