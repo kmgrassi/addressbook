@@ -7,8 +7,7 @@ import ContactDetails from "./pages/details/ContactDetails";
 import Home from "./pages/home/Home";
 import theme from "./theme";
 
-function App() {
-  const { initialList } = useInitialData();
+export function _App({ initialList }) {
   return (
     <ThemeProvider theme={theme}>
       <AddressBookDataWrapper initialList={initialList}>
@@ -25,6 +24,11 @@ function App() {
       </AddressBookDataWrapper>
     </ThemeProvider>
   );
+}
+
+function App() {
+  const { initialList } = useInitialData();
+  return <_App initialList={initialList} />;
 }
 
 export default App;

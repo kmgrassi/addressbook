@@ -7,8 +7,6 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAddressBookData } from "../../context/AddressBookDataContext";
-import { useInitialData } from "../../context/InitialDataContext";
 import { Contact } from "../../types";
 import { formatToReadableName } from "../../utils/helpers/string.helpers";
 import { StyledSpinner } from "../loading/StyledSpinner";
@@ -27,17 +25,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export function ContactList() {
+export function ContactList({ isLoading, contactList }) {
   const classes = useStyles();
-  const { isLoading } = useInitialData();
-  const { contactList } = useAddressBookData();
+
   return (
     <div>
       {isLoading && !contactList && <StyledSpinner />}
       {contactList &&
         contactList.map((contact: Contact, index) => {
           return (
-            <Link to={`/${index}`} className={classes.link}>
+            <Link to={`/${index}`} className={classes.link} key={index}>
               {index === 0 && <Divider />}
               <Grid
                 key={index}

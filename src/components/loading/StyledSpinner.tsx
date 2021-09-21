@@ -27,7 +27,7 @@ export function StyledSpinner() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid="spinner">
       <Box
         display="flex"
         alignItems="center"
