@@ -71,6 +71,10 @@ I used `react-router` for routing. I set the path for the contact details as the
 
 You can easily change the path/slug to anything else (like the persons name for example - `/john-smith`). You'd likely use the person's name or uid or both in an prod app to allow for more robust linking/sharing of urls.
 
+### Progressive app
+
+The app is designed to work and look good on web and mobile. Material UI `Grid` and `Hidden` components were used to build a progressive app. While the app is progressive, I think it looks best on mobile. On very large screens the contact list layout doesn't look great. Given more time I would have fixed this with a split screen layout of the list (or another technique to improve the list UI).
+
 ### Given more time...
 
 #### Testing
