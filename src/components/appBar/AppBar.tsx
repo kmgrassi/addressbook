@@ -43,7 +43,9 @@ export default function SearchAppBar() {
     contactList,
     setGenderFilter,
     setAlphaFilter,
-    setContactList
+    setContactList,
+    alphabeticalFilter,
+    genderFilter
   } = useAddressBookData();
 
   const handleNavNext = () => {
@@ -63,8 +65,16 @@ export default function SearchAppBar() {
   };
 
   const handleMobileMenuOpen = (event) => {
-    setGenderFilter({ male: false, female: false });
-    setAlphaFilter([]);
+    // If no filter is applied, remove all filter selections to allow use to set their initial filter
+    if (
+      alphabeticalFilter.length === 26 &&
+      genderFilter.male &&
+      genderFilter.female
+    ) {
+      setGenderFilter({ male: false, female: false });
+      setAlphaFilter([]);
+    }
+
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
