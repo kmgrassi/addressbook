@@ -13,6 +13,7 @@ import * as React from "react";
 import { Fragment } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useAddressBookData } from "../../context/AddressBookDataContext";
+import { useInitialData } from "../../context/InitialDataContext";
 import theme from "../../theme";
 import { Filters } from "./filters/Filters";
 import { SearchBar } from "./SearchBar";
@@ -37,7 +38,13 @@ export default function SearchAppBar() {
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const { contactList } = useAddressBookData();
+  const { initialList } = useInitialData();
+  const {
+    contactList,
+    setGenderFilter,
+    setAlphaFilter,
+    setContactList
+  } = useAddressBookData();
 
   const handleNavNext = () => {
     history.push(`/${Number(index) + 1}`);
@@ -48,10 +55,16 @@ export default function SearchAppBar() {
   };
 
   const handleMobileMenuClose = () => {
+    // If the filter modal is closed without any filters selected, set the list back to the initial state
+    if (!contactList || contactList.length === 0) {
+      setContactList(initialList);
+    }
     setMobileMoreAnchorEl(null);
   };
 
   const handleMobileMenuOpen = (event) => {
+    setGenderFilter({ male: false, female: false });
+    setAlphaFilter([]);
     setMobileMoreAnchorEl(event.currentTarget);
   };
 

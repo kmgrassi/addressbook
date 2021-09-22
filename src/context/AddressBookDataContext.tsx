@@ -11,9 +11,7 @@ export const AddressBookDataWrapper = (props) => {
     male: true,
     female: true
   });
-
   const [allLetters, setAllLetters] = useState(true);
-
   const [alphabeticalFilter, setAlphaFilter] = useState(alphabet);
 
   useEffect(() => {
@@ -50,7 +48,8 @@ export const AddressBookDataWrapper = (props) => {
     setGenderFilter,
     alphabeticalFilter,
     setAlphaFilter,
-    allLetters
+    allLetters,
+    setContactList
   };
   return (
     <AddressBookDataContext.Provider value={value}>
@@ -65,6 +64,7 @@ export const AddressBookDataContext = createContext({
   setGenderFilter: (filter) => {},
   alphabeticalFilter: alphabet,
   setAlphaFilter: (filter) => {},
+  setContactList: (list) => {},
   allLetters: true
 });
 export const useAddressBookData = () => useContext(AddressBookDataContext);

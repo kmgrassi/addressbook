@@ -86,7 +86,7 @@ export function Filters() {
                 }}
               />
             }
-            label="Toggle all letters"
+            label="Select all letters"
           />
         </FormGroup>
         <AlphabetButtons />
